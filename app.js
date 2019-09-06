@@ -16,7 +16,7 @@ app.get('/', function(request, response){
 })
 
 app.get('/main', function(request, response){
-  response.render('./main.hbs')
+  response.render('show-all-humans.hbs')
 })
 
 app.get('/about', function(request, response){
