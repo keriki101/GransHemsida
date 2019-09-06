@@ -9,14 +9,12 @@ app.engine("hbs", expressHandlebars({
 }))
 
 app.get('/', function(request, response){
-  const model = {
-    humans: dummyData.humans
-  }
-  response.render("show-all-humans.hbs", model)
+  
+  response.render("home.hbs")
 })
 
-app.get('/main', function(request, response){
-  response.render('show-all-humans.hbs')
+app.get('/home', function(request, response){
+  response.render('./home.hbs')
 })
 
 app.get('/about', function(request, response){
