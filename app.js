@@ -25,6 +25,10 @@ app.get('/Contact', function(request, response){
   response.render('./contact.hbs')
 })
 
+app.get('/portfolio', function(request, response){
+  response.render('./portfolio.hbs')
+})
+
 app.get('/main.css', function(request,response){
 response.sendFile(__dirname + '/views/main.css')
 })
