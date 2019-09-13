@@ -31,8 +31,8 @@ app.get('/portfolio', function(request, response){
   response.render('./portfolio.hbs')
 })
 
-app.get('/main.css', function(request,response){
-response.sendFile(__dirname + '/views/main.css')
-})
+//app.get('/main.css', function(request,response){
+//response.sendFile(__dirname + '/views/main.css')
+//}) 
 
 app.listen(8080)
