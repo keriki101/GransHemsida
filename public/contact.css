@@ -1,8 +1,21 @@
-ul{
-    text-align: center;
-
+img{
+    border-radius: 50%;
 }
 
-body {
-    padding-top:20px;
+h3{
+    position: relative;
+  left: 80px;
+}
+
+h2{
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border: 15px;
+}
+
+h1{
+    text-align: center;
 }
