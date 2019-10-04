@@ -2,13 +2,13 @@ const dummyData = require('./dummy-data')
 const express = require('express')
 const expressHandlebars = require('express-handlebars')
 
+
 const app = express()
 
+const username = "admin"
+const password = "qwe123!!"
+
 app.use(express.static("public"))
-
-const username = "Admin"
-const password = "Qwe123!!"
-
 
 app.engine("hbs", expressHandlebars({
   defaultLayout: 'main.hbs'
@@ -47,11 +47,14 @@ app.get('/login', function(request, response){
 //response.sendFile(__dirname + '/views/main.css')
 //}) 
 
+const username = "admin"
+const password = "qwe123!!"
+
 app.post("/login", function(request, response){
 	
 	if(request.body.username == username && request.body.password == password){
 		request.session.isLoggedIn = true
-		response.redirect("/home.hbs")
+		response.redirect("home.hbs")
 	}else{
 		response.render("login.hbs")
 	}

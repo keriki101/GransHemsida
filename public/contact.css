@@ -9,32 +9,36 @@ h3{
 }
 
 #email{
+    text-decoration: none;
     position: absolute;
     top: 20%;
-    left: 30%;
+    left: 31%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
     border: 15px;
 }
 #cellphone{
+    text-decoration: none;
     position: absolute;
-    top: 25%;
-    left: 24.7%;
+    top: 30%;
+    left: 26%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
     border: 15px;
 }
 #twitter{
+    text-decoration: none;
     position: absolute;
-    top: 30%;
+    top: 40%;
     left: 25%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
     border: 15px;
 }
 #instagram{
+    text-decoration: none;
     position: absolute;
-    top: 35%;
+    top: 50%;
     left: 24.7%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -53,3 +57,9 @@ h1{
     width: 1.3em;
 }
 
+#phone-img{
+    width: 1.4em;
+}
+#email-img{
+    width: 1em;
+}
