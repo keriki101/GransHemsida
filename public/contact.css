@@ -1,16 +1,41 @@
-img{
+#logo{
     border-radius: 50%;
+    padding-left: 30px;
 }
 
 h3{
     position: relative;
-  left: 80px;
+    left: 80px;
 }
 
-h2{
+#email{
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border: 15px;
+}
+#cellphone{
+    position: absolute;
+    top: 25%;
+    left: 24.7%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border: 15px;
+}
+#twitter{
     position: absolute;
     top: 30%;
-    left: 30%;
+    left: 25%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border: 15px;
+}
+#instagram{
+    position: absolute;
+    top: 35%;
+    left: 24.7%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
     border: 15px;
@@ -19,3 +44,12 @@ h2{
 h1{
     text-align: center;
 }
+
+#twitter-img{
+    width: 2em;
+    
+}
+#instagram-img{
+    width: 1.3em;
+}
+
