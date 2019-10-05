@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,40 @@
     <link rel="stylesheet" type="text/css" href="./portfolio.css">
     <title>Portfolio</title>
 </head>
+
 <body>
     
+    <table id="table" class="table table-striped col-md-6 ">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">name</th>
+                <th scope="col">link</th>
+            </tr>
+        </thead>
+        {{#if projects.length}}
+            {{#each projects}}
+                <tbody>
+                    <tr>
+                        <td>{{projectId}}</td>
+                        <td>{{projectName}}</td>
+                        <td>{{projectLink}}</td>
+                    </tr>
+                </tbody>                
+            {{/each}}
+        {{else}}
+            <tbody>
+                    <tr>
+                        <td>There are no projects to show!</td>
+                    </tr>
+                </tbody>   
+        {{/if}}
+        
+        
+    </table>
+    {{#each projects}}
+        <h1>{{Name}}</h1>
+    {{/each}}
 </body>
+
 </html>

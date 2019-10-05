@@ -1,14 +1,16 @@
 const dummyData = require('./dummy-data')
 const express = require('express')
 const expressHandlebars = require('express-handlebars')
-
+const bodyParser = require('body-parser')
+const db = require('./db')
 
 const app = express()
 
-const username = "admin"
-const password = "qwe123!!"
-
 app.use(express.static("public"))
+
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 
 app.engine("hbs", expressHandlebars({
   defaultLayout: 'main.hbs'
@@ -32,7 +34,14 @@ app.get('/Contact', function(request, response){
 })
 
 app.get('/portfolio', function(request, response){
-  response.render('./portfolio.hbs')
+  db.getAllProjects(function(error, projects){
+
+    const model = {
+      projects
+      
+    }
+    response.render('portfolio.hbs', model)
+  })
 })
 
 app.get('/blog', function(request, response){
