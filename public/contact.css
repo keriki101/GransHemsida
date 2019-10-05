@@ -8,42 +8,12 @@ h3{
     left: 80px;
 }
 
-#email{
+#contact-link{
+    color: #000000;
     text-decoration: none;
-    position: absolute;
-    top: 20%;
-    left: 31%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    border: 15px;
 }
-#cellphone{
-    text-decoration: none;
-    position: absolute;
-    top: 30%;
-    left: 26%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    border: 15px;
-}
-#twitter{
-    text-decoration: none;
-    position: absolute;
-    top: 40%;
-    left: 25%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    border: 15px;
-}
-#instagram{
-    text-decoration: none;
-    position: absolute;
-    top: 50%;
-    left: 24.7%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    border: 15px;
-}
+
+
 
 h1{
     text-align: center;
@@ -61,5 +31,5 @@ h1{
     width: 1.4em;
 }
 #email-img{
-    width: 1em;
+    width: 1.3em;
 }
