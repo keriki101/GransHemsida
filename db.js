@@ -9,3 +9,11 @@ exports.getAllProjects = function(callback){
         callback(error, projects)
     })
 }
+
+exports.createBlogPost = function(blogpostHeader, blogpostText, callback){
+    const query = "INSERT INTO blogpost (blogpostHeader, blogpostText) VALUES (?,?)"
+    const values = [blogpostHeader, blogpostText]
+    db.run(query, values, function(error){
+        callback(error)
+    })
+}

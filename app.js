@@ -29,6 +29,10 @@ app.get('/about', function(request, response){
   response.render('./about.hbs')
 })
 
+app.get('/create', function(request, response){
+  response.render('./create.hbs')
+})
+
 app.get('/Contact', function(request, response){
   response.render('./contact.hbs')
 })
