@@ -3,18 +3,23 @@ const express = require('express')
 const expressHandlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
 const db = require('./db')
+const blogRouter = require('./routerBlogPost')
 
 const app = express()
 
 app.use(express.static("public"))
 
+
 app.use(bodyParser.urlencoded({
   extended: false
 }))
 
+
 app.engine("hbs", expressHandlebars({
   defaultLayout: 'main.hbs'
 }))
+
+app.use('/blog', blogRouter)
 
 app.get('/', function(request, response){
   
@@ -29,12 +34,14 @@ app.get('/about', function(request, response){
   response.render('./about.hbs')
 })
 
-app.get('/create', function(request, response){
-  response.render('./create.hbs')
-})
+
 
 app.get('/Contact', function(request, response){
   response.render('./contact.hbs')
+})
+
+app.get('/guestbook', function(request, response){
+  response.render('./guestbook.hbs')
 })
 
 app.get('/portfolio', function(request, response){
@@ -48,9 +55,6 @@ app.get('/portfolio', function(request, response){
   })
 })
 
-app.get('/blog', function(request, response){
-  response.render('./blog.hbs')
-})
 
 app.get('/login', function(request, response){
   response.render('./login.hbs')
