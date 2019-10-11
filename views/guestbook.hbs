@@ -2,22 +2,15 @@
     <link rel="stylesheet" type="text/css" href="./guestbook.css">
 </head>
 
-<form action="" class="container">
-    <div class="">
-        <div class="form-group">
-            <label for="exampleFormControlInput1">Post Title</label>
-            <input class="form-control" id="exampleFormControltitle" placeholder="Write Your name here...">
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlInput1">Subject</label>
-            <input class="form-control" id="exampleFormControlSubject" placeholder="Write subject here...">
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Comment</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <div>
-            <button type="submit" class="btn btn-primary">Create</button>
-        </div>
-    </div>
-</form>
+{{#if somethingWentWrong}}
+    <p>Internal server error</p>
+{{/if}}
+{{#if guestbook.length}}
+    {{#each guestbook}}
+        <h2>{{guestName}}</h2>
+        <h4>{{guestSubject}}</h4>
+        <p>{{guestComment}}</p>
+    {{/each}}
+{{else}}
+    <p>No guestbook posts</p>
+{{/if}}

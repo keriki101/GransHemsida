@@ -18,4 +18,34 @@ exports.createBlogPost = function(blogpostHeader, blogpostText, callback){
     })
 }
 
+exports.createGuestPost = function(name, age, callback){
+	
+	const query = "INSERT INTO guestbook(postId, guestName, guestsubject, guestComment) VALUES (?, ?, ?, ?)"
+	const values = [postId, guestName, guestSubject, guestComment]
+	
+	db.run(query, values, function(error){
+		
+		const id = this.lastID
+		
+		callback(error, id)
+		
+	})
+	
+}
 
+exports.getAllGuestPosts = function(callback){
+	
+	const query = "SELECT * FROM guestbookPost"
+	
+	db.all(query, function(error, guestbook){
+		
+		callback(error, guestbook)
+		
+	})
+	
+}
+
+exports.createPost = function(guestName, guestSubject, guestComment, callback){
+
+
+}

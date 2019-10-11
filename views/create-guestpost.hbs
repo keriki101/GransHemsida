@@ -1,0 +1,33 @@
+<h1>Create guest post</h1>
+
+{{#if validationErrors.length}}
+	<p>Errors:</p>
+	<ul>
+		{{#each validationErrors}}
+			<li>{{this}}</li>
+		{{/each}}
+	</ul>
+{{/if}}
+
+
+
+
+<form action="" class="container">
+    <div class="">
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Post name</label>
+            <input class="form-control" value="{{name}}" id="exampleFormControltitle" placeholder="Write Your name here...">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Subject</label>
+            <input class="form-control" value="{{subject}}" id="exampleFormControlSubject" placeholder="Write subject here...">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Comment</label>
+            <textarea value="{{comment}}" class="form-control"  id="exampleFormControlTextarea1" placeholder="write comment here..." rows="3"></textarea>
+        </div>
+        <div>
+            <button type="submit" value="create post" class="btn btn-primary">Create</button>
+        </div>
+    </div>
+</form>
