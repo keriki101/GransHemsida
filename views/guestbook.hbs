@@ -2,15 +2,21 @@
     <link rel="stylesheet" type="text/css" href="./guestbook.css">
 </head>
 
-{{#if somethingWentWrong}}
-    <p>Internal server error</p>
-{{/if}}
-{{#if guestbook.length}}
-    {{#each guestbook}}
-        <h2>{{guestName}}</h2>
-        <h4>{{guestSubject}}</h4>
-        <p>{{guestComment}}</p>
-    {{/each}}
-{{else}}
-    <p>No guestbook posts</p>
-{{/if}}
+<div class="container jumbotron">
+    {{#if somethingWentWrong}}
+        <p>Internal server error</p>
+    {{/if}}
+    {{#if guestbook.length}}
+        {{#each guestbook}}
+            <h2>{{guestName}}</h2>
+            <h4>{{guestSubject}}</h4>
+            <p class="lead">{{guestComment}}</p>
+            <a href="" class="btn btn-primary">Edit</a>
+            <a href="" class="btn btn-danger">Delete</a>
+            <hr class="my-4">
+        {{/each}}
+    {{else}}
+        <p>No guestbook posts</p>
+    {{/if}}
+</div>
+<a href="/guestbook/create" class="btn btn-primary">Create post</a>

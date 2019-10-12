@@ -1,19 +1,39 @@
-<!-- Blog Post -->
-
 <head>
   <title>Blog</title>
   <link rel="stylesheet" type="text/css" href="./blog.css">
-
-
 </head>
-<div class="container">
+
+<h1>Blogpost</h1>
+<a href="/blog/create" class="btn btn-primary">Create post</a>
+
+    {{#if somethingWentWrong}}
+        <p>Internal server error</p>
+    {{/if}}
+    {{#if blogPost}}
+        {{#each blogPost}}
+          <div id="blog" class="container jumbotron">
+            <h3>{{postTitle}}</h3>
+            <p>{{postComment}}</p>
+            <hr>
+            <p>Posted by: <a href="">Gran</a></p>
+            <p>Posted on {{blogDate}}</p>
+            <a href="" class="btn btn-primary">Edit</a>
+            <a href="" class="btn btn-danger">Delete</a>
+          </div>
+        {{/each}}
+    {{else}}
+        <p>No blogposts</p>
+    {{/if}}
+
+
+
+
+<!--<div class="container">
   <div id="blogpost" class="card mb-4">
-    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+    <img class="card-img-top" src="{{blogLinkToPic}}" alt="Card image cap">
     <div class="card-body">
-      <h2 class="card-title">Post Title</h2>
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla?
-        Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus,
-        veniam magni quis!</p>
+      <h2 class="card-title">{{blogTitle}}</h2>
+      <p class="card-text">{{blogComment}}</p>
       <a href="#" class="btn btn-primary">Read More &rarr;</a>
     </div>
     <div class="card-footer text-muted">
@@ -21,4 +41,4 @@
       <a href="#">Erik Granlund</a>
     </div>
   </div>
-</div>
+</div>-->

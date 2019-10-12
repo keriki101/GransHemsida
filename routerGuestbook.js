@@ -40,7 +40,7 @@ router.get('/create', function(request, response){
     response.render('create-guestpost.hbs', model)
   })
 
-router.post("/", function(request, response){
+router.post("/create", function(request, response){
 	
 	const Id = request.body.postId
     const name = request.body.guestName
@@ -65,11 +65,11 @@ router.post("/", function(request, response){
 	
 	if(validationErrors.length == 0){
 		
-		db.createHuman(name, subject, comment, function(error, id){
+		db.createGuestPost(name, subject, comment, function(error, id){
 			if(error){
 				
 			}else{
-				response.redirect("/blogpost/")
+				response.redirect("/guestbook/")
 			}
 		})
 		

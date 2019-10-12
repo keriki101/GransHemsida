@@ -10,24 +10,26 @@ exports.getAllProjects = function(callback){
     })
 }
 
-exports.createBlogPost = function(blogpostHeader, blogpostText, callback){
-    const query = "INSERT INTO blogpost (blogpostHeader, blogpostText) VALUES (?,?)"
-    const values = [blogpostHeader, blogpostText]
+
+
+exports.createBlogPost = function(blogTitle, blogComment, blogDate, callback){
+    const query = "INSERT INTO blogPost (postTitle, postComment, blogDate) VALUES (?,?,?)"
+    const values = [blogTitle, blogComment, blogDate]
     db.run(query, values, function(error){
-        callback(error)
+		const blogId = this.lastID
+		callback(error, blogId)
     })
 }
 
-exports.createGuestPost = function(name, age, callback){
+exports.createGuestPost = function(guestName, guestSubject, guestComment, callback){
 	
-	const query = "INSERT INTO guestbook(postId, guestName, guestsubject, guestComment) VALUES (?, ?, ?, ?)"
-	const values = [postId, guestName, guestSubject, guestComment]
+	const query = "INSERT INTO guestbookPost(guestName, guestSubject, guestComment) VALUES (?, ?, ?)"
+	const values = [guestName, guestSubject, guestComment]
 	
 	db.run(query, values, function(error){
 		
-		const id = this.lastID
-		
-		callback(error, id)
+		const Id = this.lastID
+		callback(error, Id)
 		
 	})
 	
@@ -43,6 +45,16 @@ exports.getAllGuestPosts = function(callback){
 		
 	})
 	
+}
+
+exports.getAllBlogposts = function(callback){
+
+	const query = "SELECT * FROM blogPost"
+
+	db.all(query, function(error, blogPost){
+
+		callback(error, blogPost)
+	})
 }
 
 exports.createPost = function(guestName, guestSubject, guestComment, callback){

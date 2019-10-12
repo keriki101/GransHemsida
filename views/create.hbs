@@ -1,20 +1,25 @@
 <h2>Create post</h2>
 
-<form action="" method="POST">
+{{#if validationErrors.length}}
+	<p>Errors:</p>
+	<ul>
+		{{#each validationErrors}}
+			<li>{{this}}</li>
+		{{/each}}
+	</ul>
+{{/if}}
+
+<form method="POST" action="/blog/create">
     <div class="col-md-4">
         <div class="form-group">
             <label for="exampleFormControlInput1">Post Title</label>
-            <input class="form-control" id="exampleFormControltitle1" placeholder="Write title here...">
+            <input class="form-control" name="postTitle" value="{{blogTitle}}" id="exampleFormControltitle1" placeholder="Write title here...">
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Comment</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlFile1">Example file input</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            <textarea class="form-control" name="postComment" value="{{blogComment}}" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" value="create post" class="btn btn-primary">Create</button>
     </div>
 </form>
