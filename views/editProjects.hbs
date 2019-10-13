@@ -1,0 +1,13 @@
+<div class="container jumbotron">
+    <form action="/editProjects" method="POST">
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Project name</label>
+            <input class="form-control" value="{{projects.projectName}}" name="projectName" >
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlLink">Link to project</label>
+            <input class="form-control" name="projectLink" value="{{projects.projectLink}}">
+        </div>
+        <button type="submit" value="create post" class="btn btn-primary">Edit</button>
+    </form>
+</div>

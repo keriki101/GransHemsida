@@ -2,6 +2,7 @@
     <link rel="stylesheet" type="text/css" href="./guestbook.css">
 </head>
 
+<a href="/guestbook/create" class="btn btn-primary">Create post</a>
 <div class="container jumbotron">
     {{#if somethingWentWrong}}
         <p>Internal server error</p>
@@ -10,13 +11,11 @@
         {{#each guestbook}}
             <h2>{{guestName}}</h2>
             <h4>{{guestSubject}}</h4>
-            <p class="lead">{{guestComment}}</p>
-            <a href="" class="btn btn-primary">Edit</a>
-            <a href="" class="btn btn-danger">Delete</a>
+            <p class="lead">{{guestContent}}</p>
+            <a href="/guestbook/delete/{{postId}}" class="btn btn-secondary">Delete</a>
             <hr class="my-4">
         {{/each}}
     {{else}}
         <p>No guestbook posts</p>
     {{/if}}
 </div>
-<a href="/guestbook/create" class="btn btn-primary">Create post</a>

@@ -17,8 +17,9 @@
             <hr>
             <p>Posted by: <a href="">Gran</a></p>
             <p>Posted on {{blogDate}}</p>
-            <a href="" class="btn btn-primary">Edit</a>
-            <a href="" class="btn btn-danger">Delete</a>
+            <a href="/blog/{{blogId}}" class="btn btn-primary">Read More</a>
+            <a href="/blog/edit/{{blogId}}" class="btn btn-secondary">Edit</a>
+            <a href="/blog/delete/{{blogId}}" class="btn btn-danger">Delete</a>
           </div>
         {{/each}}
     {{else}}

@@ -32,6 +32,14 @@ router.get("/", function(request, response){
 	
 })
 
+router.get("/delete/:postId", function(request,response){
+    const postId = request.params.postId
+
+    db.deleteGuestbookPost(postId, function(error){
+        response.redirect("/guestbook")
+    })
+})
+
 router.get('/create', function(request, response){
     const model = {
         validationErrors: []
@@ -45,7 +53,7 @@ router.post("/create", function(request, response){
 	const Id = request.body.postId
     const name = request.body.guestName
     const subject = request.body.guestSubject
-    const comment = request.body.guestComment
+    const content = request.body.guestContent
 	
 	const validationErrors = []
 	
@@ -57,15 +65,15 @@ router.post("/create", function(request, response){
 		validationErrors.push("Must enter a subject.")
     }
     
-    if(comment == ""){
-		validationErrors.push("Must enter a comment.")
+    if(content == ""){
+		validationErrors.push("Must enter content.")
 	}
 	
 	// TODO: you probably want to use other validation rules (min/max length on username, min/max values on age).
 	
 	if(validationErrors.length == 0){
 		
-		db.createGuestPost(name, subject, comment, function(error, id){
+		db.createGuestPost(name, subject, content, function(error, id){
 			if(error){
 				
 			}else{
@@ -79,7 +87,7 @@ router.post("/create", function(request, response){
 			validationErrors,
 			name,
             subject,
-            comment
+            content
 		}
 		
 		response.render("create-guestpost.hbs", model)

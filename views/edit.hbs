@@ -1,0 +1,23 @@
+{{#if validationErrors.length}}
+	<p>Errors:</p>
+	<ul>
+		{{#each validationErrors}}
+			<li>{{this}}</li>
+		{{/each}}
+	</ul>
+{{/if}}
+
+<form method="POST" action="/blog/edit/{{blogPost.blogId}}">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Post Title</label>
+            <input class="form-control" name="postTitle" value="{{blogPost.postTitle}}" id="input-postTitle" placeholder="Write title here...">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Comment</label>
+            <textarea class="form-control" name="postComment" id="input-postComment" rows="3">{{blogPost.postComment}}</textarea>
+        </div>
+
+        <button type="submit" value="create post" class="btn btn-primary">Edit</button>
+    </div>
+</form>

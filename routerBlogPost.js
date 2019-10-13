@@ -35,25 +35,95 @@ router.get('/create', function(request, response){
 })
 
 
+router.get('/:blogId', function(request,response){
+    
+    const blogId = request.params.blogId
+    
+    db.getBlogPostById(blogId, function(error, blogPost){
+        if(error){
+            console.log(error)
+        }else{
+            const model ={
+                blogPost
+            }
+            response.render("readMore.hbs", model)
+        }
+    })
+
+    /*if(isLoggedIn){
+      response.render("/edit.hbs")
+    }else{
+      validationErrors.push("must be logged in!")
+    }*/
+})
+
+router.get("/delete/:blogId", function(request,response){
+    const blogId = request.params.blogId
+
+    db.deleteBlogPost(blogId, function(error){
+        response.redirect("/blog")
+    })
+})
+
+router.get('/edit/:blogId', function(request,response){
+    
+    const blogId = request.params.blogId
+    
+    db.getBlogPostById(blogId, function(error, blogPost){
+        if(error){
+            console.log(error)
+        }else{
+            const model ={
+                blogPost
+            }
+            response.render("edit.hbs", model)
+        }
+    })
+
+    /*if(isLoggedIn){
+      response.render("/edit.hbs")
+    }else{
+      validationErrors.push("must be logged in!")
+    }*/
+})
+  
+router.post("/edit/:blogId", function(request,response){
+    
+    
+    const blogId = request.params.blogId
+    const postTitle = request.body.postTitle
+    const postComment = request.body.postComment
+
+    db.editBlogPost(postTitle, postComment, blogId, function(error){
+        if(error){
+
+        }else{
+            response.redirect('/blog/'+blogId)
+        }
+    })
+})
+  
+
+
 router.post("/create", function(request, response){
-    const blogTitle = request.body.postTitle
-    const blogComment = request.body.postComment
+    const postTitle = request.body.postTitle
+    const postComment = request.body.postComment
 
     const validationErrors = []
 
     const date = new Date()
     const blogDate = date.toDateString()
     
-    if(blogTitle == ""){
+    if(postTitle == ""){
 		validationErrors.push("Must enter a Title.")
     }
-    if(blogComment == ""){
+    if(postComment == ""){
 		validationErrors.push("Must enter a comment.")
 	}
 
     if(validationErrors.length == 0){
         
-        db.createBlogPost(blogTitle, blogComment, blogDate, function(error, blogId){
+        db.createBlogPost(postTitle, postComment, blogDate, function(error, blogId){
             if(error){
                 console.log(error)
             }
@@ -65,8 +135,8 @@ router.post("/create", function(request, response){
     }else{
         const model = {
             validationErrors,
-            blogTitle,
-            blogComment,
+            postTitle,
+            postComment,
             blogDate
         }
 
