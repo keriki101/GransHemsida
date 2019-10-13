@@ -14,4 +14,3 @@ app.get('/portfolio', function(request, response){
     })
   })
 
-  
