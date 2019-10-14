@@ -89,7 +89,6 @@ router.get('/edit/:blogId', function(request,response){
   
 router.post("/edit/:blogId", function(request,response){
     
-    
     const blogId = request.params.blogId
     const postTitle = request.body.postTitle
     const postComment = request.body.postComment

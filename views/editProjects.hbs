@@ -1,5 +1,14 @@
+{{#if validationErrors.length}}
+	<p>Errors:</p>
+	<ul>
+		{{#each validationErrors}}
+			<li>{{this}}</li>
+		{{/each}}
+	</ul>
+{{/if}}
+
 <div class="container jumbotron">
-    <form action="/editProjects" method="POST">
+    <form action="/portfolio/editProjects/{{projects.projectId}}" method="POST">
         <div class="form-group">
             <label for="exampleFormControlInput1">Project name</label>
             <input class="form-control" value="{{projects.projectName}}" name="projectName" >

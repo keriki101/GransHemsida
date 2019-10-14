@@ -12,8 +12,8 @@
 <body>
     <h1>My Projects</h1>
     {{#if isLoggedIn}}
-        <a href="/editProjects" class="btn btn-secondary">Edit Projects</a>
-        <a href="/addProjects" class="btn btn-secondary"> Add Projects</a>
+        <a href="/portfolio/addProjects" class="btn btn-secondary">Add Projects</a>
+        
     {{/if}}
     <table id="table" class="table table-striped col-md-6 ">
         <thead>
@@ -21,6 +21,10 @@
                 <th scope="col">ID</th>
                 <th scope="col">name</th>
                 <th scope="col">link</th>
+                {{#if isLoggedIn}}
+                    <th></th>
+                    <th></th>
+                {{/if}}
             </tr>
         </thead>
         {{#if projects.length}}
@@ -30,6 +34,8 @@
                         <td>{{projectId}}</td>
                         <td>{{projectName}}</td>
                         <td><a href="{{projectLink}}" target="_blank">Link to project</a></td>
+                        <td><a href="/portfolio/EditProjects/{{projectId}}" class="btn btn-secondary"> Edit Projects</a></td>
+                        <td><a href="/portfolio/delete/{{projectId}}" class="btn btn-danger"> Delete Projects</a></td> 
                     </tr>
                 </tbody>                
             {{/each}}

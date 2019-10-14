@@ -46,7 +46,7 @@ router.get('/create', function(request, response){
     }
     
     response.render('create-guestpost.hbs', model)
-  })
+})
 
 router.post("/create", function(request, response){
 	

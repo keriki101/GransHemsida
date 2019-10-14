@@ -6,8 +6,10 @@ const cookieParser = require('cookie-parser')
 const expressSession = require('express-session')
 const SQLiteStore = require('connect-sqlite3')(expressSession)
 
+const portfolioRouter = require('./routerPortfolio')
 const blogRouter = require('./routerBlogPost')
 const guestbookRouter = require('./routerGuestbook')
+
 const db = require('./db')
 
 const username = "admin"
@@ -42,6 +44,8 @@ app.use(function(request, response, next){
 app.use('/blog', blogRouter)
 
 app.use('/guestbook', guestbookRouter)
+
+app.use('/portfolio', portfolioRouter)
 
 app.engine("hbs", expressHandlebars({
   defaultLayout: 'main.hbs'
