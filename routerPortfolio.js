@@ -31,12 +31,12 @@ router.get("/addProjects", function (request, response) {
 
 router.post("/addProjects", function (request, response) {
 
-  const ProjectName = request.body.ProjectName
+  const projectName = request.body.projectName
   const projectLink = request.body.projectLink
 
   const validationErrors = []
 
-  if (ProjectName == "") {
+  if (projectName == "") {
     validationErrors.push("Must enter project name.")
   }
 
@@ -46,7 +46,7 @@ router.post("/addProjects", function (request, response) {
 
   if (validationErrors.length == 0) {
 
-    db.createProject(ProjectName, projectLink, function (error, projectId) {
+    db.createProject(projectName, projectLink, function (error, projectId) {
       if (error) {
         console.log(error)
       } else {
@@ -56,7 +56,7 @@ router.post("/addProjects", function (request, response) {
   } else {
     const model = {
       validationErrors,
-      ProjectName,
+      projectName,
       projectLink
     }
     response.render("addProjects.hbs", model)
@@ -107,10 +107,10 @@ router.get('/editProjects/:projectId', function (request, response) {
 router.post("/editProjects/:projectId", function (request, response) {
 
   const projectId = request.params.projectId
-  const ProjectName = request.body.ProjectName
+  const projectName = request.body.projectName
   const projectLink = request.body.projectLink
 
-    db.editPortfolio(ProjectName, projectLink, projectId, function(error){
+    db.editPortfolio(projectName, projectLink, projectId, function(error){
       if(error){
 
       }else{
