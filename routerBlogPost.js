@@ -35,6 +35,7 @@ router.get('/create', function(request, response){
 })
 
 
+
 router.get('/:blogId', function(request,response){
     
     const blogId = request.params.blogId
@@ -49,12 +50,6 @@ router.get('/:blogId', function(request,response){
             response.render("readMore.hbs", model)
         }
     })
-
-    /*if(isLoggedIn){
-      response.render("/edit.hbs")
-    }else{
-      validationErrors.push("must be logged in!")
-    }*/
 })
 
 router.get("/delete/:blogId", function(request,response){
@@ -79,25 +74,20 @@ router.get('/edit/:blogId', function(request,response){
             response.render("edit.hbs", model)
         }
     })
-
-    /*if(isLoggedIn){
-      response.render("/edit.hbs")
-    }else{
-      validationErrors.push("must be logged in!")
-    }*/
 })
   
-router.post("/edit/:blogId", function(request,response){
+router.get('/edit/:blogId', function(request,response){
     
     const blogId = request.params.blogId
-    const postTitle = request.body.postTitle
-    const postComment = request.body.postComment
-
-    db.editBlogPost(postTitle, postComment, blogId, function(error){
+    
+    db.getBlogPostById(blogId, function(error, blogPost){
         if(error){
-
+            console.log(error)
         }else{
-            response.redirect('/blog/'+blogId)
+            const model ={
+                blogPost
+            }
+            response.render("edit.hbs", model)
         }
     })
 })

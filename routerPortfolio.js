@@ -67,7 +67,7 @@ router.get('/:projectId', function (request, response) {
 
   const projectId = request.params.projectId
 
-  db.getProjectById(projectId, function(error, projects) {
+  db.getProjectById(projectId, function (error, projects) {
     if (error) {
       console.log(error)
     } else {
@@ -110,20 +110,14 @@ router.post("/editProjects/:projectId", function (request, response) {
   const projectName = request.body.projectName
   const projectLink = request.body.projectLink
 
-    db.editPortfolio(projectName, projectLink, projectId, function(error){
-      if(error){
+  db.editPortfolio(projectName, projectLink, projectId, function (error) {
+    if (error) {
 
-      }else{
-        response.redirect("/portfolio/"+projectId)
-      }
-    })
+    } else {
+      response.redirect("/portfolio/" + projectId)
+    }
+  })
 })
-
-
-
-
-
-
 
 
 module.exports = router

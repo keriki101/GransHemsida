@@ -9,6 +9,7 @@ const SQLiteStore = require('connect-sqlite3')(expressSession)
 const portfolioRouter = require('./routerPortfolio')
 const blogRouter = require('./routerBlogPost')
 const guestbookRouter = require('./routerGuestbook')
+const adminRouter = require('./routerAdmin')
 
 const db = require('./db')
 
@@ -47,12 +48,13 @@ app.use('/guestbook', guestbookRouter)
 
 app.use('/portfolio', portfolioRouter)
 
+app.use('/adminpage', adminRouter)
+
 app.engine("hbs", expressHandlebars({
   defaultLayout: 'main.hbs'
 }))
 
 app.get('/', function(request, response){
-  
   response.render("home.hbs")
 })
 

@@ -18,26 +18,10 @@
             <p>Posted by: <a href="">Gran</a></p>
             <p>Posted on {{blogDate}}</p>
             <a href="/blog/{{blogId}}" class="btn btn-primary">Read More</a>
+            <a href="/adminpage/manageblog/edit/{{blogId}}" class="btn btn-secondary">edit</a>
+            <a href="/adminpage/manageblog/delete/{{blogId}}" class="btn btn-danger">delete</a>
           </div>
         {{/each}}
     {{else}}
         <p>No blogposts</p>
     {{/if}}
-
-
-
-
-<!--<div class="container">
-  <div id="blogpost" class="card mb-4">
-    <img class="card-img-top" src="{{blogLinkToPic}}" alt="Card image cap">
-    <div class="card-body">
-      <h2 class="card-title">{{blogTitle}}</h2>
-      <p class="card-text">{{blogComment}}</p>
-      <a href="#" class="btn btn-primary">Read More &rarr;</a>
-    </div>
-    <div class="card-footer text-muted">
-      Posted on September 29, 2019 by
-      <a href="#">Erik Granlund</a>
-    </div>
-  </div>
-</div>-->
