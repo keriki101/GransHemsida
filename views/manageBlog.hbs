@@ -4,8 +4,9 @@
 </head>
 
 <h1>Blogpost</h1>
+{{#if isLoggedIn}}  
 <a href="/blog/create" class="btn btn-primary">Create post</a>
-
+  
     {{#if somethingWentWrong}}
         <p>Internal server error</p>
     {{/if}}
@@ -25,3 +26,6 @@
     {{else}}
         <p>No blogposts</p>
     {{/if}}
+  {{else}}
+  <p>must be logged in!</p>
+  {{/if}}

@@ -1,10 +1,8 @@
 <head>
     <link rel="stylesheet" type="text/css" href="./guestbook.css">
 </head>
-{{#if isLoggedIn}}
-<a href="/guestbook/create" class="btn btn-primary">Write guestpost</a>
-{{/if}}
 
+<a href="/guestbook/create" class="btn btn-primary">Write guestpost</a>
     {{#if somethingWentWrong}}
         <p>Internal server error</p>
     {{/if}}

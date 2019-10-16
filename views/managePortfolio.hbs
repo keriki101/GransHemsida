@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    {{#if isLoggedIn}}
     <h1>Manage Projects</h1>
     <table id="table" class="table table-striped col-md-6 ">
         <thead>
@@ -48,6 +49,9 @@
         
         
     </table>
+    {{else}}
+    <p>must be logged in!</p
+    {{/if}}>
    
 </body>
 
