@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const expressSession = require('express-session')
 const SQLiteStore = require('connect-sqlite3')(expressSession)
+//const bCrypt = require('bcrypt')
 
 const portfolioRouter = require('./routerPortfolio')
 const blogRouter = require('./routerBlogPost')
@@ -41,6 +42,8 @@ app.use(function(request, response, next){
 	next()
 	
 })
+
+//app.use(bCrypt())
 
 app.use('/blog', blogRouter)
 

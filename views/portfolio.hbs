@@ -12,7 +12,7 @@
 <body>
     <h1>My Projects</h1>
     {{#if isLoggedIn}}
-        <a href="/portfolio/addProjects" class="btn btn-secondary">Add Projects</a>
+        <a href="/portfolio/addProjects" class="btn btn-primary">Add Projects</a>
         
     {{/if}}
     <table id="table" class="table table-striped col-md-6 ">
@@ -27,7 +27,7 @@
             {{#each projects}}
                 <tbody>
                     <tr>
-                        <td>{{projectId}}</td>
+                        <td>{{@index}}</td>
                         <td>{{projectName}}</td>
                         <td><a href="{{projectLink}}" target="_blank">Link to project</a></td>
                     </tr>

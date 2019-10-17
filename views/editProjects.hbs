@@ -7,6 +7,7 @@
 	</ul>
 {{/if}}
 
+{{#if isLoggedIn}}
 <div class="container jumbotron">
     <form action="/portfolio/editProjects/{{projects.projectId}}" method="POST">
         <div class="form-group">
@@ -20,3 +21,6 @@
         <button type="submit" value="create post" class="btn btn-primary">Edit</button>
     </form>
 </div>
+{{else}}
+<p>You have to be logged in for this function</p>
+{{/if}}

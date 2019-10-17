@@ -7,6 +7,7 @@
 	</ul>
 {{/if}}
 
+{{#if isLoggedIn}}
 <form method="POST" action="/adminpage/manageblog/edit/{{blogPost.blogId}}">
     <div class="col-md-4">
         <div class="form-group">
@@ -21,3 +22,6 @@
         <button type="submit" value="create post" class="btn btn-primary">Edit</button>
     </div>
 </form>
+{{else}}
+<p>You have to be logged in for this function</p>
+{{/if}}
