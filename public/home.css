@@ -10,7 +10,8 @@ h2{
 
 body{
     background-image: url(./background-image.png);
-    background-size: auto; 
+    background-size: 100%; 
+    background-repeat: no-repeat;
 }
 
 .text{
