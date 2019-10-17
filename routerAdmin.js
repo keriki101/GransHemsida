@@ -39,7 +39,7 @@ router.post('/manageguestbook/delete/:postId', function (request, response) {
 
 router.get('/manageguestbook/editguestbook/:postId', function (request, response) {
 
-  const postId = request.params.postId  
+  const postId = request.params.postId
 
   db.getGuestpostById(postId, function (error, guestbookPost) {
     if (error) {
@@ -151,7 +151,7 @@ router.get('/:projectId', function (request, response) {
       response.render("readMorePortfolio.hbs", model)
     }
   })
-}) 
+})
 
 router.post('/manageblog/delete/:blogId', function (request, response) {
   const blogId = request.params.blogId
