@@ -20,7 +20,12 @@
             <p>Posted on {{blogDate}}</p>
             <a href="/blog/{{blogId}}" class="btn btn-primary">Read More</a>
             <a href="/adminpage/manageblog/edit/{{blogId}}" class="btn btn-secondary">edit</a>
-            <a href="/adminpage/manageblog/delete/{{blogId}}" class="btn btn-danger">delete</a>
+            <form action="/adminpage/manageblog/delete/{{blogId}}" method="POST">
+              <input type="submit" value="delete" class="btn btn-danger">
+            </form>
+            
+            
+            
           </div>
         {{/each}}
     {{else}}

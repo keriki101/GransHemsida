@@ -51,16 +51,14 @@
   <footer id="main-footer" class="page-footer font-small special-color-dark ">
 
     <!-- Copyright -->
-    <div id="footer" class=" footer-copyright text-center py-3 navbar-dark bg-dark">© 2019 Copyright:
+    <div id="footer" class=" footer-copyright text-center py-3 text-light navbar-dark bg-dark">© 2019 Copyright:
       <a>Erik Granlund</a>
       {{#if isLoggedIn}}
-    
-            <a class=" btn btn-secondary text-md-right" href="/logout">Logout</a>
-          
+          <form action="/logout" method="POST">
+            <input type="submit" value="logout" class="btn btn-secondary text-md-right">
+          </form>
         {{else}}
-          
-            <a class=" btn btn-secondary text-md-right" href="/login">login</a>
-          
+            <a class=" btn btn-secondary text-md-right" href="/login">login</a>          
         {{/if}}
     </div>
 

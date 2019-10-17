@@ -5,7 +5,8 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const expressSession = require('express-session')
 const SQLiteStore = require('connect-sqlite3')(expressSession)
-//const bCrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
+//const csurf = require('csurf')
 
 const portfolioRouter = require('./routerPortfolio')
 const blogRouter = require('./routerBlogPost')
@@ -14,13 +15,23 @@ const adminRouter = require('./routerAdmin')
 
 const db = require('./db')
 
+const salt = bcrypt.genSaltSync(10)
+const hash = bcrypt.hashSync("qwe123!!", salt)
+
 const username = "admin"
-const password = "qwe123!!"
+const password = "$2a$10$W/4ZuP5hG0ZZTR/799SdzO.ZGSkRVbIZY9Aq2UZPif0IuEY5J8oWG"
 
 const app = express()
 
 app.use(express.static("public"))
 
+
+
+/*const csrfMiddleware = csurf({
+  cookie: true
+});*/
+
+//app.use(csrfMiddleware);
 
 app.use(bodyParser.urlencoded({
   extended: false
@@ -43,7 +54,16 @@ app.use(function(request, response, next){
 	
 })
 
-//app.use(bCrypt())
+app.post("/login", function(request, response){
+	
+	if(request.body.username == username && bcrypt.compareSync(request.body.password, hash)){
+		request.session.isLoggedIn = true
+		response.redirect("/")
+	}else{
+		response.render("login.hbs")
+	}
+	
+})
 
 app.use('/blog', blogRouter)
 
@@ -73,26 +93,19 @@ app.get('/Contact', function(request, response){
   response.render('./contact.hbs')
 })
 
-
-
-app.get('/logout', function(request, response){
-  request.session.isLoggedIn = false
-  response.redirect("/")
+app.post('/logout', function(request, response){
+  if(request.session.isLoggedIn){
+    request.session.isLoggedIn = false;
+    response.redirect("/")
+  }else{
+    response.render("home.hbs")
+  }
 })
 
 app.get('/login', function(request, response){
   response.render('./login.hbs')
 })
 
-app.post("/login", function(request, response){
-	
-	if(request.body.username == username && request.body.password == password){
-		request.session.isLoggedIn = true
-		response.redirect("/")
-	}else{
-		response.render("login.hbs")
-	}
-	
-})
+
 
 app.listen(8080)

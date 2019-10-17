@@ -19,6 +19,15 @@ exports.editPortfolio = function(projectName, projectLink,  projectId, callback)
 	})
 }
 
+exports.editGuestbook = function(guestName, guestSubject, guestContent, postId, callback){
+	const query = "UPDATE guestbookPost SET guestName = ?, guestSubject = ?, guestContent = ? WHERE postId = ?"
+	const values = [guestName, guestSubject, guestContent, postId]
+
+	db.run(query, values, function(error){
+		callback(error)
+	})
+}
+
 exports.deleteProject = function (projectId, callback){
 	const query = "DELETE FROM projects WHERE projectId = ?"
 	const values = [projectId]
@@ -36,6 +45,16 @@ exports.getProjectById = function(projectId, callback) {
 		callback(error, projects)
 	})
 }
+
+exports.getGuestpostById = function(postId, callback){
+	const query = "SELECT * FROM guestbookPost WHERE postId = ?"
+	const values = [postId]
+
+	db.get(query, values, function(error, guestbookPost){
+		callback(error, guestbookPost)
+	})
+}
+
 
 exports.createProject = function(projectName, projectLink, callback){
 	const query = "INSERT INTO projects (projectName, projectLink) VALUES (?,?)"
@@ -129,9 +148,4 @@ exports.getAllBlogposts = function (callback) {
 
 		callback(error, blogPost)
 	})
-}
-
-exports.createPost = function (guestName, guestSubject, guestComment, callback) {
-
-
 }

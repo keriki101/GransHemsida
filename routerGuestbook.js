@@ -32,7 +32,7 @@ router.get("/", function(request, response){
 	
 })
 
-router.get("/delete/:postId", function(request,response){
+router.post("/delete/:postId", function(request,response){
     const postId = request.params.postId
 
     db.deleteGuestbookPost(postId, function(error){
@@ -47,6 +47,7 @@ router.get('/create', function(request, response){
     
     response.render('create-guestpost.hbs', model)
 })
+
 
 router.post("/create", function(request, response){
 	

@@ -80,7 +80,7 @@ router.get('/:projectId', function (request, response) {
 })
 
 
-router.get("/delete/:projectId", function (request, response) {
+router.post("/delete/:projectId", function (request, response) {
   const projectId = request.params.projectId
 
   db.deleteProject(projectId, function (error) {

@@ -52,7 +52,7 @@ router.get('/:blogId', function(request,response){
     })
 })
 
-router.get("/delete/:blogId", function(request,response){
+router.post("/delete/:blogId", function(request,response){
     const blogId = request.params.blogId
 
     db.deleteBlogPost(blogId, function(error){
@@ -75,24 +75,6 @@ router.get('/edit/:blogId', function(request,response){
         }
     })
 })
-  
-router.get('/edit/:blogId', function(request,response){
-    
-    const blogId = request.params.blogId
-    
-    db.getBlogPostById(blogId, function(error, blogPost){
-        if(error){
-            console.log(error)
-        }else{
-            const model ={
-                blogPost
-            }
-            response.render("edit.hbs", model)
-        }
-    })
-})
-  
-
 
 router.post("/create", function(request, response){
     const postTitle = request.body.postTitle

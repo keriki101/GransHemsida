@@ -12,7 +12,10 @@
                 <h2>{{guestName}}</h2>
                 <h4>{{guestSubject}}</h4>
                 <p class="lead">{{guestContent}}</p>
-                <a href="/adminpage/manageguestbook/delete/{{postId}}" class="btn btn-danger">Delete</a>
+                <a href="/adminpage/manageguestbook/editguestbook/{{postId}}" class="btn btn-secondary">Edit</a>
+                <form action="/adminpage/manageguestbook/delete/{{postId}}" method="POST">
+                    <input type="submit" value="delete" class="btn btn-danger">
+                </form> 
                 <hr class="my-4">
             </div>
         {{/each}}

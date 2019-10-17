@@ -30,7 +30,12 @@
                         <td>{{projectName}}</td>
                         <td><a href="{{projectLink}}" target="_blank">Link to project</a></td>
                         <td><a href="/adminpage/manageportfolio/editprojects/{{projectId}}" class="btn btn-secondary">edit</a></td>
-                        <td><a href="/adminpage/manageportfolio/delete/{{projectId}}" class="btn btn-danger">Delete</a></td>
+                        <td>
+                            <form action="/adminpage/manageportfolio/delete/{{projectId}}" method="POST">
+                                <input type="submit" value="delete" class="btn btn-danger">
+                            </form> 
+                        </td>
+
                     </tr>
                 </tbody>                
             {{/each}}
