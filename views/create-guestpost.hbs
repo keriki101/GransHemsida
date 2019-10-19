@@ -11,6 +11,7 @@
 
 <form method="POST" class="container">
     <div>
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
         <div class="form-group">
             <label for="exampleFormControlInput1">Post name</label>
             <input class="form-control" name="guestName" value="{{name}}" id="exampleFormControltitle" placeholder="Write Your name here...">
@@ -26,6 +27,7 @@
         <div>
             <button type="submit" value="create post" class="btn btn-primary">Create</button>
         </div>
+        
         <hr>
             <a href="/guestbook" class="btn btn-primary">See posts</a>
     </div>

@@ -10,6 +10,7 @@
 {{#if isLoggedIn}}
 <div class="container jumbotron">
     <form action="/portfolio/editProjects/{{projects.projectId}}" method="POST">
+    <input type="hidden" name="_csrf" value="{{csrfToken}}">
         <div class="form-group">
             <label for="exampleFormControlInput1">Project name</label>
             <input class="form-control" value="{{projects.projectName}}" name="projectName" >

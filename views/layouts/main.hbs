@@ -55,6 +55,7 @@
       <a>Erik Granlund</a>
       {{#if isLoggedIn}}
           <form action="/logout" method="POST">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
             <input type="submit" value="logout" class="btn btn-secondary text-md-right">
           </form>
         {{else}}

@@ -9,6 +9,7 @@
 
 <div class="container jumbotron">
     <form action="/portfolio/addProjects" method="POST">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
         <div class="form-group">
             <label for="exampleFormControlInput1">Project name</label>
             <input class="form-control"  name="projectName" value="{{projects.projectName}}" >

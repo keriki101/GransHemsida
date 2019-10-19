@@ -9,6 +9,7 @@
 
 {{#if isLoggedIn}}
 <form method="POST" action="/adminpage/manageblog/edit/{{blogPost.blogId}}">
+<input type="hidden" name="_csrf" value="{{csrfToken}}">
     <div class="col-md-4">
         <div class="form-group">
             <label for="exampleFormControlInput1">Post Title</label>

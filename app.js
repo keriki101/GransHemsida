@@ -1,4 +1,3 @@
-const dummyData = require('./dummy-data')
 const express = require('express')
 const expressHandlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
@@ -6,12 +5,26 @@ const cookieParser = require('cookie-parser')
 const expressSession = require('express-session')
 const SQLiteStore = require('connect-sqlite3')(expressSession)
 const bcrypt = require('bcryptjs')
-//const csurf = require('csurf')
+const csurf = require('csurf')
 
 const portfolioRouter = require('./routerPortfolio')
 const blogRouter = require('./routerBlogPost')
 const guestbookRouter = require('./routerGuestbook')
 const adminRouter = require('./routerAdmin')
+
+const app = express()
+
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
+
+app.use(cookieParser())
+
+const csrfProtection = csurf({
+  cookie: true 
+})
+
+app.use(csrfProtection)
 
 const db = require('./db')
 
@@ -21,23 +34,13 @@ const hash = bcrypt.hashSync("qwe123!!", salt)
 const username = "admin"
 const password = "$2a$10$W/4ZuP5hG0ZZTR/799SdzO.ZGSkRVbIZY9Aq2UZPif0IuEY5J8oWG"
 
-const app = express()
+
 
 app.use(express.static("public"))
 
 
 
-/*const csrfMiddleware = csurf({
-  cookie: true
-});*/
 
-//app.use(csrfMiddleware);
-
-app.use(bodyParser.urlencoded({
-  extended: false
-}))
-
-app.use(cookieParser())
 
 app.use(expressSession({
   secret: "hfkjdsahflkjdsahkjf",
@@ -46,23 +49,25 @@ app.use(expressSession({
   store: new SQLiteStore()
 }))
 
-app.use(function(request, response, next){
-	
-	response.locals.isLoggedIn = request.session.isLoggedIn
-	
-	next()
-	
+app.use(function (request, response, next) {
+
+  response.locals.isLoggedIn = request.session.isLoggedIn
+
+  response.locals.csrfToken = request.csrfToken
+
+  next()
+
 })
 
-app.post("/login", function(request, response){
-	
-	if(request.body.username == username && bcrypt.compareSync(request.body.password, hash)){
-		request.session.isLoggedIn = true
-		response.redirect("/")
-	}else{
-		response.render("login.hbs")
-	}
-	
+app.post("/login", function (request, response) {
+
+  if (request.body.username == username && bcrypt.compareSync(request.body.password, hash)) {
+    request.session.isLoggedIn = true
+    response.redirect("/")
+  } else {
+    response.render("login.hbs")
+  }
+
 })
 
 app.use('/blog', blogRouter)
@@ -77,32 +82,32 @@ app.engine("hbs", expressHandlebars({
   defaultLayout: 'main.hbs'
 }))
 
-app.get('/', function(request, response){
+app.get('/', function (request, response) {
   response.render("home.hbs")
 })
 
-app.get('/home', function(request, response){
+app.get('/home', function (request, response) {
   response.render('./home.hbs')
 })
 
-app.get('/about', function(request, response){
+app.get('/about', function (request, response) {
   response.render('./about.hbs')
 })
 
-app.get('/Contact', function(request, response){
+app.get('/Contact', function (request, response) {
   response.render('./contact.hbs')
 })
 
-app.post('/logout', function(request, response){
-  if(request.session.isLoggedIn){
+app.post('/logout', function (request, response) {
+  if (request.session.isLoggedIn) {
     request.session.isLoggedIn = false;
     response.redirect("/")
-  }else{
+  } else {
     response.render("home.hbs")
   }
 })
 
-app.get('/login', function(request, response){
+app.get('/login', function (request, response) {
   response.render('./login.hbs')
 })
 
@@ -110,7 +115,7 @@ app.get('/login', function(request, response){
 
 app.listen(8080)
 
-app.get('*', function(req, res){
+app.get('*', function (req, res) {
   res.send('ERROR 404: Could Not Find', 404);
 });
 

@@ -10,6 +10,7 @@
 <h1>Edit guestbook</h1>
 
 <form method="POST" class="container" action="/adminpage/manageguestbook/editguestbook/{{guestbookPost.postId}}">
+<input type="hidden" name="_csrf" value="{{csrfToken}}">
     <div>
         <div class="form-group">
             <label for="exampleFormControlInput1">Post name</label>

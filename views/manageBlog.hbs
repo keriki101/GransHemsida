@@ -21,6 +21,7 @@
             <a href="/blog/{{blogId}}" class="btn btn-primary">Read More</a>
             <a href="/adminpage/manageblog/edit/{{blogId}}" class="btn btn-secondary">edit</a>
             <form action="/adminpage/manageblog/delete/{{blogId}}" method="POST">
+            <input type="hidden" name="_csrf" value="{{../csrfToken}}">
               <input type="submit" value="delete" class="btn btn-danger">
             </form>
             
@@ -31,6 +32,6 @@
     {{else}}
         <p>No blogposts</p>
     {{/if}}
-  {{else}}
+{{else}}
   <p>must be logged in!</p>
-  {{/if}}
+{{/if}}
