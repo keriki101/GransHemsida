@@ -88,7 +88,7 @@ router.get('/:projectId', function (request, response) {
   })
 })*/
 
-/*router.get('/editProjects/:projectId', function (request, response) {
+router.get('/editProjects/:projectId', function (request, response) {
 
   const projectId = request.params.projectId
 
@@ -102,9 +102,9 @@ router.get('/:projectId', function (request, response) {
       response.render("editProjects.hbs", model)
     }
   })
-})*/
+})
 
-/*router.post("/editProjects/:projectId", function (request, response) {
+router.post("/editProjects/:projectId", function (request, response) {
 
   const projectId = request.params.projectId
   const projectName = request.body.projectName
@@ -117,7 +117,7 @@ router.get('/:projectId', function (request, response) {
       response.redirect("/portfolio/" + projectId)
     }
   })
-})*/
+})
 
 
 module.exports = router

@@ -35,11 +35,11 @@
           <a class="nav-link" href="/guestbook">guestbook</a>
         </li>
         {{#if isLoggedIn}}
-          <li class="nav-item">
-            <a class="nav-link" href="/adminpage">Admin page</a>
-          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/adminpage">Admin page</a>
+        </li>
         {{/if}}
-        
+
       </ul>
     </div>
   </nav>
@@ -54,16 +54,16 @@
     <div id="footer" class=" footer-copyright text-center py-3 text-light navbar-dark bg-dark">© 2019 Copyright:
       <a>Erik Granlund</a>
       {{#if isLoggedIn}}
-          <form action="/logout" method="POST">
-            <input type="hidden" name="_csrf" value="{{csrfToken}}">
-            <input type="submit" value="logout" class="btn btn-secondary text-md-right">
-          </form>
-        {{else}}
-            <a class=" btn btn-secondary text-md-right" href="/login">login</a>          
-        {{/if}}
+      <form action="/logout" method="POST">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <input type="submit" value="logout" class="btn btn-secondary text-md-right">
+      </form>
+      {{else}}
+      <a class=" btn btn-secondary text-md-right" href="/login">login</a>
+      {{/if}}
     </div>
 
-    
+
   </footer>
   <!-- Footer -->
 

@@ -109,8 +109,3 @@ app.listen(8080)
 app.get('*', function (req, res) {
   res.send('ERROR 404: Could Not Find', 404);
 });
-
-app.use(function (error, req, res, next) {
-  res.send('500: Internal Server Error', 500);
-  console.log(error);
-});

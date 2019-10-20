@@ -192,7 +192,7 @@ router.post('/manageblog/edit/:blogId', function (request, response) {
   })
 })
 
-router.get('/manageportfolio/editProjects/:projectId', function (request, response) {
+router.get('/manageportfolio/editprojects/:projectId', function (request, response) {
 
   const projectId = request.params.projectId
 
@@ -208,7 +208,7 @@ router.get('/manageportfolio/editProjects/:projectId', function (request, respon
   })
 })
 
-router.post("/adminpage/manageportfolio/editProjects/:projectId", function (request, response) {
+router.post("/adminpage/manageportfolio/editprojects/:projectId", function (request, response) {
 
   const projectId = request.params.projectId
   const projectName = request.body.projectName

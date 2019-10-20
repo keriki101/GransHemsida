@@ -45,7 +45,7 @@ router.get('/create', function(request, response){
         validationErrors: []
     }
     
-    response.render('create-guestpost.hbs', model)
+    response.render('createGuestpost.hbs', model)
 })
 
 
@@ -91,7 +91,7 @@ router.post("/create", function(request, response){
             content
 		}
 		
-		response.render("create-guestpost.hbs", model)
+		response.render("createGuestpost.hbs", model)
 		
 	}
 		
