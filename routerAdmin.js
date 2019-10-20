@@ -4,7 +4,7 @@ const db = require('./db')
 const router = express.Router()
 
 router.get('/', function (request, response) {
-  response.render("adminpage.hbs")
+  response.render("adminPage.hbs")
 })
 
 router.get('/manageguestbook', function (request, response) {
