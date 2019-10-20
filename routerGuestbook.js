@@ -32,13 +32,13 @@ router.get("/", function(request, response){
 	
 })
 
-router.post("/delete/:postId", function(request,response){
+/*router.post("/delete/:postId", function(request,response){
     const postId = request.params.postId
 
     db.deleteGuestbookPost(postId, function(error){
         response.redirect("/guestbook")
     })
-})
+})*/
 
 router.get('/create', function(request, response){
     const model = {

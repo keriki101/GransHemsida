@@ -34,13 +34,7 @@ const hash = bcrypt.hashSync("qwe123!!", salt)
 const username = "admin"
 const password = "$2a$10$W/4ZuP5hG0ZZTR/799SdzO.ZGSkRVbIZY9Aq2UZPif0IuEY5J8oWG"
 
-
-
 app.use(express.static("public"))
-
-
-
-
 
 app.use(expressSession({
   secret: "hfkjdsahflkjdsahkjf",
@@ -67,7 +61,6 @@ app.post("/login", function (request, response) {
   } else {
     response.render("login.hbs")
   }
-
 })
 
 app.use('/blog', blogRouter)
@@ -87,15 +80,15 @@ app.get('/', function (request, response) {
 })
 
 app.get('/home', function (request, response) {
-  response.render('./home.hbs')
+  response.render("home.hbs")
 })
 
 app.get('/about', function (request, response) {
-  response.render('./about.hbs')
+  response.render("about.hbs")
 })
 
 app.get('/Contact', function (request, response) {
-  response.render('./contact.hbs')
+  response.render("contact.hbs")
 })
 
 app.post('/logout', function (request, response) {
@@ -108,10 +101,8 @@ app.post('/logout', function (request, response) {
 })
 
 app.get('/login', function (request, response) {
-  response.render('./login.hbs')
+  response.render("login.hbs")
 })
-
-
 
 app.listen(8080)
 
