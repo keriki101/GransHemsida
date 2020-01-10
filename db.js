@@ -2,9 +2,17 @@ const sqlite3 = require('sqlite3')
 
 const db = new sqlite3.Database("database.db")
 
+/*db.run(CREATE TABLE IF NOT EXISTS "blogPost" (
+	"postTitle"	TEXT,
+	"blogId"	INTEGER PRIMARY KEY AUTOINCREMENT,
+	"postComment"	TEXT,
+	"blogDate"	TEXT
+))*/
+
 
 exports.getAllProjects = function (callback) {
 	const query = "SELECT * FROM projects"
+	
 	db.all(query, function (error, projects) {
 		callback(error, projects)
 	})
@@ -108,6 +116,7 @@ exports.getBlogPostById = function (blogId, callback) {
 exports.createBlogPost = function (postTitle, postComment, blogDate, callback) {
 	const query = "INSERT INTO blogPost (postTitle, postComment, blogDate) VALUES (?,?,?)"
 	const values = [postTitle, postComment, blogDate]
+	
 	db.run(query, values, function (error) {
 		const blogId = this.lastID
 		callback(error, blogId)
@@ -120,10 +129,8 @@ exports.createGuestPost = function (guestName, guestSubject, guestContent, callb
 	const values = [guestName, guestSubject, guestContent]
 
 	db.run(query, values, function (error) {
-
 		const Id = this.lastID
 		callback(error, Id)
-
 	})
 
 }
@@ -133,9 +140,7 @@ exports.getAllGuestPosts = function (callback) {
 	const query = "SELECT * FROM guestbookPost"
 
 	db.all(query, function (error, guestbook) {
-
 		callback(error, guestbook)
-
 	})
 
 }
@@ -145,7 +150,6 @@ exports.getAllBlogposts = function (callback) {
 	const query = "SELECT * FROM blogPost"
 
 	db.all(query, function (error, blogPost) {
-
 		callback(error, blogPost)
 	})
 }

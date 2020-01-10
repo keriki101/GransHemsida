@@ -4,14 +4,15 @@ const db = require('./db')
 const router = express.Router()
 
 router.get('/', function (request, response) {
+  
   response.render("adminPage.hbs")
+
 })
 
 router.get('/manageguestbook', function (request, response) {
   db.getAllGuestPosts(function (error, guestbook) {
 
     if (error) {
-
       const model = {
         somethingWentWrong: true
       }
@@ -25,32 +26,38 @@ router.get('/manageguestbook', function (request, response) {
       }
 
       response.render("ManageGuestbook.hbs", model)
+    
     }
   })
+
 })
 
-router.post('/manageguestbook/delete/:postId', function (request, response) {
+router.post('/manageguestbook/deleteById/:postId', function (request, response) {
   const postId = request.params.postId
-
-  db.deleteGuestbookPost(postId, function (error) {
-    response.redirect("/adminpage/manageguestbook")
-  })
+    if (request.session.isLoggedIn){
+      db.deleteGuestbookPost(postId, function (error) {
+        response.redirect("/adminpage/manageguestbook")
+      })
+    } 
 })
 
 router.get('/manageguestbook/editguestbook/:postId', function (request, response) {
 
   const postId = request.params.postId
-
-  db.getGuestpostById(postId, function (error, guestbookPost) {
-    if (error) {
-      console.log(error)
-    } else {
-      const model = {
-        guestbookPost
+  if (request.session.isLoggedIn){
+    db.getGuestpostById(postId, function (error, guestbookPost) {
+      if (error) {
+        console.log(error)
+      } else {
+        const model = {
+          guestbookPost
+        }
+        
+        response.render("editGuestbook.hbs", model)
+      
       }
-      response.render("editGuestbook.hbs", model)
-    }
-  })
+    })
+  }
 })
 
 router.post('/manageguestbook/editguestbook/:postId', function (request, response) {
@@ -59,23 +66,22 @@ router.post('/manageguestbook/editguestbook/:postId', function (request, respons
   const guestName = request.body.guestName
   const guestSubject = request.body.guestSubject
   const guestContent = request.body.guestContent
-
-  db.editGuestbook(guestName, guestSubject, guestContent, postId, function (error) {
-    if (error) {
-      console.log(error)
-    } else {
-      response.redirect("/adminpage/manageguestbook/")
-    }
-  })
+  if (request.session.isLoggedIn){
+    db.editGuestbook(guestName, guestSubject, guestContent, postId, function (error) {
+      if (error) {
+        console.log(error)
+      } else {
+        response.redirect("/adminpage/manageguestbook/")
+      }
+    })
+  }
 })
 
 //blog starts here
 router.get('/manageblog', function (request, response) {
 
-  db.getAllBlogposts(function (error, blogPost) {
-
+    db.getAllBlogposts(function (error, blogPost) {
     if (error) {
-
       const model = {
         somethingWentWrong: true
       }
@@ -89,14 +95,16 @@ router.get('/manageblog', function (request, response) {
       }
 
       response.render("ManageBlog.hbs", model)
+    
     }
   })
+
 })
 
 //portfolio starts here
 router.get('/manageportfolio', function (request, response) {
+  
   db.getAllProjects(function (error, projects) {
-
     if (error) {
       const model = {
         somethingWentWrong: true
@@ -107,17 +115,20 @@ router.get('/manageportfolio', function (request, response) {
         projects
 
       }
+      
       response.render('managePortfolio.hbs', model)
+    
     }
   })
 })
 
-router.post("/manageportfolio/delete/:projectId", function (request, response) {
+router.post("/manageportfolio/deleteById/:projectId", function (request, response) {
   const projectId = request.params.projectId
-
-  db.deleteProject(projectId, function (error) {
-    response.redirect("/adminpage/manageportfolio")
-  })
+  if (request.session.isLoggedIn){
+    db.deleteProject(projectId, function (error) {
+      response.redirect("/adminpage/manageportfolio")
+    })
+}
 })
 
 
@@ -132,7 +143,9 @@ router.get('/:blogId', function (request, response) {
       const model = {
         blogPost
       }
+      
       response.render("manageBlog.hbs", model)
+    
     }
   })
 })
@@ -148,34 +161,42 @@ router.get('/:projectId', function (request, response) {
       const model = {
         projects
       }
+      
       response.render("readMorePortfolio.hbs", model)
+    
     }
   })
 })
 
-router.post('/manageblog/delete/:blogId', function (request, response) {
+router.post('/manageblog/deleteById/:blogId', function (request, response) {
   const blogId = request.params.blogId
-
-  db.deleteBlogPost(blogId, function (error) {
-    response.redirect("/adminpage/manageblog")
-  })
+  if (request.session.isLoggedIn){
+    db.deleteBlogPost(blogId, function (error) {
+      response.redirect("/adminpage/manageblog")
+    })
+  }
 })
 
 router.get('/manageblog/edit/:blogId', function (request, response) {
 
   const blogId = request.params.blogId
 
-  db.getBlogPostById(blogId, function (error, blogPost) {
-    if (error) {
-      console.log(error)
-    } else {
-      const model = {
-        blogPost
+  if (request.session.isLoggedIn){
+    db.getBlogPostById(blogId, function (error, blogPost) {
+      if (error) {
+        console.log(error)
+      } else {
+        const model = {
+          blogPost
+        }
+        
+        response.render("edit.hbs", model)
+      
       }
-      response.render("edit.hbs", model)
-    }
-  })
+    })
+  }
 })
+
 
 router.post('/manageblog/edit/:blogId', function (request, response) {
 
@@ -183,13 +204,15 @@ router.post('/manageblog/edit/:blogId', function (request, response) {
   const postName = request.body.postTitle
   const postLink = request.body.postComment
 
-  db.editBlogPost(postName, postLink, blogId, function (error) {
-    if (error) {
+  if (request.session.isLoggedIn){
+    db.editBlogPost(postName, postLink, blogId, function (error) {
+      if (error) {
 
-    } else {
-      response.redirect("/adminpage/manageblog/")
-    }
-  })
+      } else {
+        response.redirect("/adminpage/manageblog/")
+      }
+    })
+  }
 })
 
 router.get('/manageportfolio/editprojects/:projectId', function (request, response) {
@@ -203,7 +226,9 @@ router.get('/manageportfolio/editprojects/:projectId', function (request, respon
       const model = {
         projects
       }
+      
       response.render("editProjects.hbs", model)
+    
     }
   })
 })
@@ -213,14 +238,16 @@ router.post("/adminpage/manageportfolio/editprojects/:projectId", function (requ
   const projectId = request.params.projectId
   const projectName = request.body.projectName
   const projectLink = request.body.projectLink
+  
+  if (request.session.isLoggedIn){
+    db.editPortfolio(projectName, projectLink, projectId, function (error) {
+      if (error) {
 
-  db.editPortfolio(projectName, projectLink, projectId, function (error) {
-    if (error) {
-
-    } else {
-      response.redirect("/manageportfolio/" + projectId)
-    }
-  })
+      } else {
+        response.redirect("/manageportfolio/" + projectId)
+      }
+    })
+  }
 })
 
 module.exports = router

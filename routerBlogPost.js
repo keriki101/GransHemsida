@@ -32,6 +32,7 @@ router.get('/create', function(request, response){
     }
 
     response.render('create.hbs', model)
+
 })
 
 
@@ -47,34 +48,12 @@ router.get('/:blogId', function(request,response){
             const model ={
                 blogPost
             }
+            
             response.render("readMore.hbs", model)
+        
         }
     })
 })
-
-/*router.post("/delete/:blogId", function(request,response){
-    const blogId = request.params.blogId
-
-    db.deleteBlogPost(blogId, function(error){
-        response.redirect("/blog")
-    })
-})
-
-router.get('/edit/:blogId', function(request,response){
-    
-    const blogId = request.params.blogId
-    
-    db.getBlogPostById(blogId, function(error, blogPost){
-        if(error){
-            console.log(error)
-        }else{
-            const model ={
-                blogPost
-            }
-            response.render("edit.hbs", model)
-        }
-    })
-})*/
 
 router.post("/create", function(request, response){
     const postTitle = request.body.postTitle

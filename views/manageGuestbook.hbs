@@ -13,7 +13,7 @@
                 <h4>{{guestSubject}}</h4>
                 <p class="lead">{{guestContent}}</p>
                 <a href="/adminpage/manageguestbook/editguestbook/{{postId}}" class="btn btn-secondary">Edit</a>
-                <form action="/adminpage/manageguestbook/delete/{{postId}}" method="POST">
+                <form action="/adminpage/manageguestbook/deleteById/{{postId}}" method="POST">
                     <input type="hidden" name="_csrf" value="{{../csrfToken}}">
                     <input type="submit" value="delete" class="btn btn-danger">
                 </form> 

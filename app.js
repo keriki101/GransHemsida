@@ -28,11 +28,9 @@ app.use(csrfProtection)
 
 const db = require('./db')
 
-const salt = bcrypt.genSaltSync(10)
-const hash = bcrypt.hashSync("qwe123!!", salt)
+const password = "$2a$10$ZPXN3UGS1KZHrFCpxIhbAez/dfFj6PXLKXCvdvrmqomMCBhoqL2pq"
 
 const username = "admin"
-const password = "$2a$10$W/4ZuP5hG0ZZTR/799SdzO.ZGSkRVbIZY9Aq2UZPif0IuEY5J8oWG"
 
 app.use(express.static("public"))
 
@@ -46,7 +44,6 @@ app.use(expressSession({
 app.use(function (request, response, next) {
 
   response.locals.isLoggedIn = request.session.isLoggedIn
-
   response.locals.csrfToken = request.csrfToken
 
   next()
@@ -55,7 +52,7 @@ app.use(function (request, response, next) {
 
 app.post("/login", function (request, response) {
 
-  if (request.body.username == username && bcrypt.compareSync(request.body.password, hash)) {
+  if (request.body.username == username && bcrypt.compareSync(request.body.password, password)) {
     request.session.isLoggedIn = true
     response.redirect("/")
   } else {
@@ -87,7 +84,7 @@ app.get('/about', function (request, response) {
   response.render("about.hbs")
 })
 
-app.get('/Contact', function (request, response) {
+app.get('/contact', function (request, response) {
   response.render("contact.hbs")
 })
 

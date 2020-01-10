@@ -32,20 +32,12 @@ router.get("/", function(request, response){
 	
 })
 
-/*router.post("/delete/:postId", function(request,response){
-    const postId = request.params.postId
-
-    db.deleteGuestbookPost(postId, function(error){
-        response.redirect("/guestbook")
-    })
-})*/
-
 router.get('/create', function(request, response){
     const model = {
         validationErrors: []
     }
-    
-    response.render('createGuestpost.hbs', model)
+	
+	response.render('createGuestpost.hbs', model)
 })
 
 
@@ -69,8 +61,6 @@ router.post("/create", function(request, response){
     if(content == ""){
 		validationErrors.push("Must enter content.")
 	}
-	
-	// TODO: you probably want to use other validation rules (min/max length on username, min/max values on age).
 	
 	if(validationErrors.length == 0){
 		

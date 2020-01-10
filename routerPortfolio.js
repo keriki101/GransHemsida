@@ -17,7 +17,9 @@ router.get('/', function (request, response) {
         projects
 
       }
+      
       response.render('portfolio.hbs', model)
+    
     }
   })
 })
@@ -26,7 +28,9 @@ router.get("/addProjects", function (request, response) {
   const model = {
     validationErrors: []
   }
+  
   response.render("addProjects.hbs", model)
+
 })
 
 router.post("/addProjects", function (request, response) {
@@ -59,7 +63,9 @@ router.post("/addProjects", function (request, response) {
       projectName,
       projectLink
     }
+    
     response.render("addProjects.hbs", model)
+  
   }
 })
 
@@ -74,19 +80,12 @@ router.get('/:projectId', function (request, response) {
       const model = {
         projects
       }
+      
       response.render("readMorePortfolio.hbs", model)
+    
     }
   })
 })
-
-
-/*router.post("/delete/:projectId", function (request, response) {
-  const projectId = request.params.projectId
-
-  db.deleteProject(projectId, function (error) {
-    response.redirect("/portfolio")
-  })
-})*/
 
 router.get('/editProjects/:projectId', function (request, response) {
 
@@ -99,7 +98,9 @@ router.get('/editProjects/:projectId', function (request, response) {
       const model = {
         projects
       }
+      
       response.render("editProjects.hbs", model)
+    
     }
   })
 })
