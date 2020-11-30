@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -15,33 +13,33 @@
         <a href="/portfolio/addProjects" class="btn btn-primary">Add Projects</a>
         
     {{/if}}
-    <table id="table" class="table table-striped col-md-6 ">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">name</th>
-                <th scope="col">link</th>
-            </tr>
-        </thead>
-        {{#if projects.length}}
-            {{#each projects}}
+    <div class="container text-center">
+        <table id="table" class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Project name</th>
+                    <th scope="col">Link</th>
+                </tr>
+            </thead>
+            {{#if projects.length}}
+                {{#each projects}}
+                    <tbody>
+                        <tr>
+                            <td>{{@index}}</td>
+                            <td>{{projectName}}</td>
+                            <td><a href="{{projectLink}}" target="_blank">{{projectLink}}</a></td>
+                        </tr>
+                    </tbody>                
+                {{/each}}
+            {{else}}
                 <tbody>
-                    <tr>
-                        <td>{{@index}}</td>
-                        <td>{{projectName}}</td>
-                        <td><a href="{{projectLink}}" target="_blank">Link to project</a></td>
-                    </tr>
-                </tbody>                
-            {{/each}}
-        {{else}}
-            <tbody>
-                    <tr>
-                        <td>There are no projects to show!</td>
-                    </tr>
-                </tbody>   
-        {{/if}}
-    </table>
+                        <tr>
+                            <td>There are no projects to show!</td>
+                        </tr>
+                    </tbody>   
+            {{/if}}
+        </table>
+    </div>
    
 </body>
-
-</html>

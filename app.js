@@ -9,7 +9,7 @@ const csurf = require('csurf')
 
 const portfolioRouter = require('./routerPortfolio')
 const blogRouter = require('./routerBlogPost')
-const guestbookRouter = require('./routerGuestbook')
+
 const adminRouter = require('./routerAdmin')
 
 const app = express()
@@ -62,8 +62,6 @@ app.post("/login", function (request, response) {
 
 app.use('/blog', blogRouter)
 
-app.use('/guestbook', guestbookRouter)
-
 app.use('/portfolio', portfolioRouter)
 
 app.use('/adminpage', adminRouter)
@@ -86,6 +84,10 @@ app.get('/about', function (request, response) {
 
 app.get('/contact', function (request, response) {
   response.render("contact.hbs")
+})
+
+app.get('/resume', function (request, response){
+  response.render("resume.hbs")
 })
 
 app.post('/logout', function (request, response) {

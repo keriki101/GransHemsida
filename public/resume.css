@@ -1,0 +1,46 @@
+img {
+    border: blue;
+    border-radius: 30px;
+    width: 30em;
+}
+
+h1 {
+    margin-bottom: 1em;
+    font-size: 5em;
+}
+
+#title{
+    padding-top: 6em;
+    margin-bottom: .1em;
+    color: grey;
+}
+
+#name {
+    font-size: 3em;
+    padding-bottom: .1em;
+}
+#WhatIDo {
+    
+    font-weight: bold;
+    font-size: 2.5em;
+    padding-top: 1em;
+    
+}
+
+#Studies {
+    font-weight: bold;
+    font-size: 2.5em;
+    padding-top: 1em;
+}
+
+#hejsan {
+    padding: 0;
+}
+
+* {
+    list-style: none;
+}
+
+body {
+    padding-bottom: 75px;
+}
